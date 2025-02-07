@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: JavaToolInstaller@0
+  inputs:
+    version: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
+- script: |
+    echo "Compiling Java Program..."
+    javac -d . DivisibilityThreads.java
+  displayName: 'Compile Java Program'
+
+- script: |
+    echo "Running Java Program..."
+    java Divisibility.DivisibilityThreads
+  displayName: 'Run Java Program and Print Output'
